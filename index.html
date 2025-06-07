@@ -30,6 +30,8 @@
       padding: 20px;
       border: 1px solid #ccc;
       background-color: #fff;
+      white-space: pre-wrap;
+      font-family: monospace;
     }
     .btn {
       padding: 10px 20px;
@@ -165,22 +167,18 @@
 </body>
 </html>`;
 
-      document.getElementById('signaturePreview').innerText = html;
+      document.getElementById('signaturePreview').textContent = html;
     }
 
     function copySignature() {
-      const range = document.createRange();
       const node = document.getElementById('signaturePreview');
-      range.selectNode(node);
-      window.getSelection().removeAllRanges();
-      window.getSelection().addRange(range);
-      try {
-        const successful = document.execCommand('copy');
-        alert(successful ? 'Podpis zkopírován!' : 'Nepodařilo se zkopírovat.');
-      } catch (err) {
-        alert('Tuto funkci váš prohlížeč nepodporuje.');
-      }
-      window.getSelection().removeAllRanges();
+      const textarea = document.createElement('textarea');
+      textarea.value = node.textContent;
+      document.body.appendChild(textarea);
+      textarea.select();
+      document.execCommand('copy');
+      document.body.removeChild(textarea);
+      alert('Podpis zkopírován!');
     }
   </script>
 </body>
