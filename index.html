@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Generátor e-mailového podpisu - Finte & Finte Reality</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      padding: 20px;
+      background-color: #f9f9f9;
+    }
+    .form-group {
+      margin-bottom: 10px;
+    }
+    label {
+      display: block;
+      font-weight: bold;
+    }
+    input {
+      width: 100%;
+      padding: 8px;
+      margin-top: 4px;
+      margin-bottom: 10px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+    }
+    #signaturePreview {
+      margin-top: 20px;
+      padding: 20px;
+      border: 1px solid #ccc;
+      background-color: #fff;
+    }
+    .signature-container {
+      display: none;
+    }
+    .btn {
+      padding: 10px 20px;
+      background-color: #333;
+      color: #fff;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+    .btn:hover {
+      background-color: #555;
+    }
+    select {
+      padding: 8px;
+      width: 100%;
+    }
+  </style>
+</head>
+<body>
+  <h1>Generátor e-mailového podpisu</h1>
+
+  <div class="form-group">
+    <label for="firma">Vyberte firmu:</label>
+    <select id="firma" onchange="renderSignature()">
+      <option value="finte">Finte</option>
+      <option value="finte-reality">Finte Reality</option>
+    </select>
+  </div>
+
+  <div class="form-group">
+    <label for="name">Jméno a příjmení</label>
+    <input type="text" id="name" oninput="renderSignature()" placeholder="Např. Viktor Dušek" />
+  </div>
+
+  <div class="form-group">
+    <label for="position">Pozice</label>
+    <input type="text" id="position" oninput="renderSignature()" placeholder="Např. CEO" />
+  </div>
+
+  <div class="form-group">
+    <label for="email">E-mail</label>
+    <input type="email" id="email" oninput="renderSignature()" placeholder="např. info@finte.cz" />
+  </div>
+
+  <div class="form-group">
+    <label for="phone">Telefon</label>
+    <input type="text" id="phone" oninput="renderSignature()" placeholder="např. +420 605 399 309" />
+  </div>
+
+  <div>
+    <button class="btn" onclick="copySignature()">Zkopírovat podpis</button>
+  </div>
+
+  <div id="signaturePreview"></div>
+
+  <script>
+    const baseData = {
+      finte: {
+        companyName: 'Finte s.r.o.',
+        website: 'www.finte.cz',
+        logo: 'https://www.fintereality.cz/imgs/podpis_finte/finte-black-svg.png',
+        webUrl: 'https://www.finte.cz',
+        social: {
+          fb: 'https://www.facebook.com/fintefinancujte',
+          in: 'https://cz.linkedin.com/company/finte-cz',
+          ig: 'https://www.instagram.com/fintefinancujte/'
+        }
+      },
+      'finte-reality': {
+        companyName: 'Finte Reality s.r.o.',
+        website: 'www.fintereality.cz',
+        logo: 'https://www.fintereality.cz/wp-content/uploads/2023/05/finte-logo-dark800.png',
+        webUrl: 'https://www.fintereality.cz',
+        social: {
+          fb: 'https://www.facebook.com/profile.php?id=61562257084732',
+          in: 'https://cz.linkedin.com/company/finte-cz',
+          ig: 'https://www.instagram.com/fintereality'
+        }
+      }
+    };
+
+    function renderSignature() {
+      const firma = document.getElementById('firma').value;
+      const name = document.getElementById('name').value;
+      const position = document.getElementById('position').value;
+      const email = document.getElementById('email').value;
+      const phone = document.getElementById('phone').value;
+
+      const data = baseData[firma];
+
+      const html = `
+        <table cellpadding="0" cellspacing="0" border="0" style="font-family: Arial, sans-serif; font-size: 14px; color: #000000; line-height: 20px;">
+          <tr>
+            <td valign="top">
+              <strong style="font-size: 18px; display: block;">${name}</strong>
+              <span style="display: block; font-size: 14px;">${position}</span>
+              <span style="display: block; font-size: 14px;">${data.companyName}</span>
+            </td>
+            <td width="30"></td>
+            <td width="1" bgcolor="#cccccc"></td>
+            <td width="30"></td>
+            <td valign="top">
+              <table cellpadding="0" cellspacing="0" border="0">
+                <tr>
+                  <td><img src="https://fintereality.cz/imgs/gradient/phone.png" width="13" /></td>
+                  <td style="padding-left: 10px;"><a href="tel:${phone}" style="color:#000000; text-decoration:none; font-weight:600;">${phone}</a></td>
+                </tr>
+                <tr>
+                  <td><img src="https://fintereality.cz/imgs/gradient/mail.png" width="13" /></td>
+                  <td style="padding-left: 10px;"><a href="mailto:${email}" style="color:#000000; text-decoration:none; font-weight:600;">${email}</a></td>
+                </tr>
+                <tr>
+                  <td><img src="https://fintereality.cz/imgs/gradient/web.png" width="13" /></td>
+                  <td style="padding-left: 10px;"><a href="${data.webUrl}" style="color:#000000; text-decoration:none; font-weight:600;">${data.website}</a></td>
+                </tr>
+                <tr>
+                  <td><img src="https://fintereality.cz/imgs/gradient/adress.png" width="13" height="15" /></td>
+                  <td style="padding-left: 10px;">Pujmanové 1753/10a, 140 00 Praha 4-Nusle</td>
+                </tr>
+              </table>
+            </td>
+          </tr>
+          <tr><td colspan="5" style="height:20px;"></td></tr>
+          <tr>
+            <td colspan="2"><img src="${data.logo}" alt="logo" width="130" /></td>
+            <td colspan="3" align="right">
+              <a href="${data.social.fb}"><img src="https://fintereality.cz/imgs/gradient/fb.png" width="24" /></a>
+              <a href="${data.social.in}" style="margin-left:10px;"><img src="https://fintereality.cz/imgs/gradient/in.png" width="24" /></a>
+              <a href="${data.social.ig}" style="margin-left:10px;"><img src="https://fintereality.cz/imgs/gradient/ig.png" width="24" /></a>
+            </td>
+          </tr>
+        </table>
+      `;
+
+      document.getElementById('signaturePreview').innerHTML = html;
+    }
+
+    function copySignature() {
+      const range = document.createRange();
+      const node = document.getElementById('signaturePreview');
+      range.selectNode(node);
+      window.getSelection().removeAllRanges();
+      window.getSelection().addRange(range);
+      try {
+        const successful = document.execCommand('copy');
+        alert(successful ? 'Podpis zkopírován!' : 'Nepodařilo se zkopírovat.');
+      } catch (err) {
+        alert('Tuto funkci váš prohlížeč nepodporuje.');
+      }
+      window.getSelection().removeAllRanges();
+    }
+  </script>
+</body>
+</html>
