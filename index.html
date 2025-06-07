@@ -30,8 +30,6 @@
       padding: 20px;
       border: 1px solid #ccc;
       background-color: #fff;
-      white-space: pre-wrap;
-      font-family: monospace;
     }
     .btn {
       padding: 10px 20px;
@@ -167,13 +165,13 @@
 </body>
 </html>`;
 
-      document.getElementById('signaturePreview').innerHTML = html;
+      document.getElementById('signaturePreview').innerText = html;
     }
 
     function copySignature() {
-      const node = document.getElementById('signaturePreview');
+      const html = document.getElementById('signaturePreview').innerText;
       const textarea = document.createElement('textarea');
-      textarea.value = node.textContent;
+      textarea.value = html;
       document.body.appendChild(textarea);
       textarea.select();
       document.execCommand('copy');
