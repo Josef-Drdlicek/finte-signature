@@ -74,20 +74,33 @@
 
   <div id="signaturePreview"></div>
 
-  <div class="form-group" style="margin-top: 30px;">
-    <label for="signatureCode">Kód podpisu pro Apple Mail:</label>
-    <textarea id="signatureCode" rows="15" readonly></textarea>
-    <button class="btn" onclick="copyHtmlCode()">Zkopírovat HTML</button>
-    <p><strong>Jak vložit do Apple Mail (macOS):</strong></p>
-    <ol>
-      <li>Otevřete aplikaci Mail → Nastavení → Podpisy → vytvořte nový podpis (např. TEST).</li>
-      <li>V Finderu otevřete složku: <code>~/Library/Mail/V10/MailData/Signatures</code>.</li>
-      <li>Najděte podpis se jménem „TEST“, otevřete jej v textovém editoru a nahraďte obsahem výše.</li>
-      <li>Uložte a zamkněte soubor přes <i>Získat informace → Zamknout</i>.</li>
-      <li>Restartujte aplikaci Mail. Hotovo.</li>
-    </ol>
-    <p><em>Poznámka: Tento návod nebylo možné plně otestovat. Používejte na vlastní odpovědnost.</em></p>
-  </div>
+<div class="form-group" style="margin-top: 30px;">
+  <label for="signatureCode">Kód podpisu pro Apple Mail:</label>
+  <textarea id="signatureCode" rows="15" readonly></textarea>
+  <button class="btn" onclick="copyHtmlCode()">Zkopírovat HTML</button>
+
+  <p><strong>Jak vložit do Apple Mail (macOS):</strong></p>
+  <ol>
+    <li>Otevřete aplikaci Mail → Nastavení → Podpisy → vytvořte nový podpis (např. TEST).</li>
+    <li>V Finderu otevřete složku: <code>~/Library/Mail/V10/MailData/Signatures</code>.</li>
+    <li>Najděte podpis se jménem „TEST“, otevřete jej v textovém editoru a nahraďte obsahem výše.</li>
+    <li>Uložte a zamkněte soubor přes <i>Získat informace → Zamknout</i>.</li>
+    <li>Restartujte aplikaci Mail. Hotovo.</li>
+  </ol>
+  <p><em>Poznámka: Tento návod nebylo možné plně otestovat. Používejte na vlastní odpovědnost.</em></p>
+
+  <br><br>
+  <p><strong>Jak vložit HTML podpis do Outlooku (Windows):</strong></p>
+  <ol>
+    <li>Otevřete Průzkumníka a vložte do adresního řádku: <code>%APPDATA%\Microsoft\Signatures</code>.</li>
+    <li>Vytvořte nový podpis přímo v Outlooku a zavřete Outlook.</li>
+    <li>Otevřete soubor s příponou <code>.htm</code> podle názvu vytvořeného podpisu.</li>
+    <li>Nahraďte celý obsah tím, co jste zkopírovali výše.</li>
+    <li>Uložte a spusťte Outlook znovu. Hotovo.</li>
+  </ol>
+  <p><a href="https://clean.email/blog/email-signature/outlook-html-signature" target="_blank">Zdrojový článek (clean.email)</a></p>
+</div>
+
 
   <script>
     const data = {
