@@ -277,10 +277,18 @@
 </html>`;
 
 
-      document.getElementById('signaturePreview').innerHTML = html;
-      document.getElementById('signatureCode').value = html;
       const fallbackHtml = generateFallbackHtml(name, position, email, phone, d);
+
+      document.getElementById('signaturePreview').innerHTML = `
+  <h3>Desktop verze</h3>
+  <div style="margin-bottom:30px;">${html}</div>
+  <h3>iPhone fallback verze</h3>
+  <div>${fallbackHtml}</div>
+`;
+
+      document.getElementById('signatureCode').value = html;
       document.getElementById('signatureCodeMobile').value = fallbackHtml;
+
 
     }
 
@@ -308,48 +316,62 @@
 <html lang="cs">
 <head><meta charset="UTF-8"></head>
 <body style="margin:0;padding:0;">
-<table cellpadding="0" cellspacing="0" style="font-family:Arial,sans-serif; font-size:14px; color:#000000; line-height:20px; max-width:100%; width:100%;">
-  <tr>
-    <td style="padding:20px;">
-      <div style="font-size:16px; font-weight:bold; margin-bottom:4px;">${name}</div>
-      <div style="margin-bottom:12px;">${d.company}</div>
+  <table cellpadding="0" cellspacing="0" style="font-family:Arial,sans-serif; font-size:14px; color:#000; line-height:20px; max-width:100%; width:100%;">
+    <tr>
+      <td style="padding:20px;">
+        <!-- Jméno a firma -->
+        <div style="font-size:16px; font-weight:bold; margin-bottom:4px;">${name}</div>
+        <div style="margin-bottom:16px;">${d.company}</div>
 
-      <div style="margin-bottom:6px;">📞 <a href="tel:${phone}" style="color:#000;text-decoration:none;">${phone}</a></div>
-      <div style="margin-bottom:6px;">✉️ <a href="mailto:${email}" style="color:#000;text-decoration:none;">${email}</a></div>
-      <div style="margin-bottom:6px;">🌐 <a href="${d.web}" style="color:#000;text-decoration:none;">${d.webLabel}</a></div>
-      <div style="margin-bottom:12px;">📍 Pujmanové 1753/10a, 140 00 Praha 4-Nusle</div>
+        <!-- Kontakty -->
+        <div style="margin-bottom:6px;">
+          <strong>Telefon:</strong> <a href="tel:${phone}" style="color:#000;text-decoration:none;">${phone}</a>
+        </div>
+        <div style="margin-bottom:6px;">
+          <strong>E-mail:</strong> <a href="mailto:${email}" style="color:#000;text-decoration:none;">${email}</a>
+        </div>
+        <div style="margin-bottom:6px;">
+          <strong>Web:</strong> <a href="${d.web}" style="color:#000;text-decoration:none;">${d.webLabel}</a>
+        </div>
+        <div style="margin-bottom:20px;">
+          <strong>Adresa:</strong> Pujmanové 1753/10a, 140&nbsp;00&nbsp;Praha&nbsp;4&nbsp;–&nbsp;Nusle
+        </div>
 
-      <div style="margin-top:16px; margin-bottom:12px;">
-        <img src="${d.logo}" alt="Logo" width="120" style="display:block;">
-      </div>
+        <!-- Logo -->
+        <div style="margin-bottom:16px;">
+          <img src="${d.logo}" alt="Finte logo" width="120" style="display:block;">
+        </div>
 
-      <div style="margin-bottom:16px;">
-        <a href="${d.social.fb}">
-          <img src="https://fintereality.cz/imgs/gradient/fb.png" width="24" style="margin-right:10px;">
-        </a>
-        <a href="${d.social.in}">
-          <img src="https://fintereality.cz/imgs/gradient/in.png" width="24" style="margin-right:10px;">
-        </a>
-        <a href="${d.social.ig}">
-          <img src="https://fintereality.cz/imgs/gradient/ig.png" width="24">
-        </a>
-      </div>
+        <!-- Sociální ikony -->
+        <div style="margin-bottom:20px;">
+          <a href="${d.social.fb}">
+            <img src="https://fintereality.cz/imgs/gradient/fb.png" width="24" style="margin-right:10px;">
+          </a>
+          <a href="${d.social.in}">
+            <img src="https://fintereality.cz/imgs/gradient/in.png" width="24" style="margin-right:10px;">
+          </a>
+          <a href="${d.social.ig}">
+            <img src="https://fintereality.cz/imgs/gradient/ig.png" width="24">
+          </a>
+        </div>
 
-      <div style="font-size:11px; color:#666; line-height:16px;">
-        <p style="margin:0;">
-          <strong>Upozornění:</strong> Tato zpráva, včetně případných příloh, je důvěrná, určená výhradně adresátovi (-ům) a může obsahovat informace, které jsou vyhrazené jako osobní údaje nebo obchodní tajemství a jsou chráněné podle platného práva České republiky. Pokud ji obdržíte nedopatřením, prosím, okamžitě informujte odesílatele a vymažte tuto zprávu ze svého počítače.
-        </p>
-        <br>
-        <p style="margin:0;">
-          <strong>Notice:</strong> This message, including any attachments, is confidential. It is intended solely for the addressee(s) and may contain personal information or trade secrets protected under the existing law of the Czech Republic. If you received this message accidentally, please notify the sender immediately and delete it.
-        </p>
-      </div>
-    </td>
-  </tr>
-</table>
+        <!-- Upozornění -->
+        <div style="font-size:11px; color:#666; line-height:16px;">
+          <p style="margin:0 0 8px 0;">
+            <strong>Upozornění:</strong> Tato zpráva včetně případných příloh je důvěrná a určená výhradně adresátovi.
+            Může obsahovat informace chráněné podle platného práva ČR. Pokud jste ji obdrželi omylem, prosím smažte ji a informujte odesílatele.
+          </p>
+          <p style="margin:0;">
+            <strong>Notice:</strong> This message is confidential and intended solely for the addressee. If you received it by mistake, please delete it and notify the sender.
+          </p>
+        </div>
+      </td>
+    </tr>
+  </table>
 </body>
 </html>`;
     }
+
 
 
     function downloadHtmlMobile() {
@@ -363,6 +385,7 @@
       URL.revokeObjectURL(url);
     }
 
+    window.addEventListener('DOMContentLoaded', renderSignature);
   </script>
 </body>
 
