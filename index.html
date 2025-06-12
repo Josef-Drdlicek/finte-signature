@@ -74,47 +74,20 @@
 
   <div id="signaturePreview"></div>
 
-<div class="form-group" style="margin-top: 30px;">
-  <label for="signatureCode">Kód podpisu pro Apple Mail:</label>
-  <textarea id="signatureCode" rows="15" readonly></textarea>
-  <button class="btn" onclick="copyHtmlCode()">Zkopírovat HTML</button>
-
-<p><strong>Jak vložit do Apple Mail (macOS):</strong></p>
-  <ol>
-    <li>Otevřete aplikaci Mail → Nastavení → Podpisy → vytvořte nový podpis (např. TEST).</li>
-    <li>V Finderu otevřete složku: <code>~/Library/Mail/V10/MailData/Signatures</code>.</li>
-    <li>Najděte podpis se jménem „TEST“, otevřete jej v textovém editoru a nahraďte obsahem výše.</li>
-    <li>Uložte a zamkněte soubor přes <i>Získat informace → Zamknout</i>.</li>
-    <li>Restartujte aplikaci Mail. Hotovo.</li>
-  </ol>
-  <p><em>Poznámka: Tento návod nebylo možné plně otestovat. Používejte na vlastní odpovědnost.</em></p>
-
-  <br><br>
-  <p><strong>Jak vložit HTML podpis do Outlooku (webová verze):</strong></p>
-  <ol>
-    <li>Otevřete <a href="https://outlook.live.com/" target="_blank">Outlook online</a> a přihlaste se.</li>
-    <li>Vpravo nahoře klikněte na ikonu ⚙️ <strong>Nastavení</strong>.</li>
-    <li>Dole zvolte <strong>Zobrazit všechna nastavení Outlooku</strong>.</li>
-    <li>V levém menu vyberte <strong>Pošta → Vytváření a odpovídání</strong>.</li>
-    <li>V části <strong>Podpis e-mailu</strong> klikněte na <strong>Nový podpis</strong>.</li>
-    <li>Vložte HTML podpis do textového pole.</li>
-    <li>Vyberte, kdy se má podpis používat.</li>
-    <li>Uložte změny.</li>
-  </ol>
-  <p><a href="https://clean.email/blog/email-signature/outlook-html-signature" target="_blank">Zdrojový článek (clean.email)</a></p>
-
-  <br><br>
-  <p><strong>Jak vložit HTML podpis do Outlooku (Windows aplikace):</strong></p>
-<ol>
-  <li>Otevřete Outlook a přejděte do <strong>Soubor → Možnosti → Pošta → Podpisy…</strong></li>
-  <li>Vytvořte nový podpis a zadejte libovolný název (např. Finte).</li>
-  <li>Do velkého textového pole vložte HTML kód (např. pomocí Ctrl+V, pokud jste ho předtím zkopírovali tlačítkem výše).</li>
-  <li>Pokud se HTML nenaformátuje správně, otevřete podpis v aplikaci <strong>Word</strong> nebo <strong>webový prohlížeč</strong> a zkopírujte jej vizuálně odtud.</li>
-  <li>Vyberte, kdy se má podpis přidávat (nové zprávy, odpovědi) a klikněte na <strong>OK</strong>.</li>
-</ol>
-  <p><a href="https://clean.email/blog/email-signature/outlook-html-signature" target="_blank">Zdrojový článek (clean.email)</a></p>
-</div>
-
+  <div class="form-group" style="margin-top: 30px;">
+    <label for="signatureCode">Kód podpisu pro Apple Mail:</label>
+    <textarea id="signatureCode" rows="15" readonly></textarea>
+    <button class="btn" onclick="copyHtmlCode()">Zkopírovat HTML</button>
+    <p><strong>Jak vložit do Apple Mail (macOS):</strong></p>
+    <ol>
+      <li>Otevřete aplikaci Mail → Nastavení → Podpisy → vytvořte nový podpis (např. TEST).</li>
+      <li>V Finderu otevřete složku: <code>~/Library/Mail/V10/MailData/Signatures</code>.</li>
+      <li>Najděte podpis se jménem „TEST“, otevřete jej v textovém editoru a nahraďte obsahem výše.</li>
+      <li>Uložte a zamkněte soubor přes <i>Získat informace → Zamknout</i>.</li>
+      <li>Restartujte aplikaci Mail. Hotovo.</li>
+    </ol>
+    <p><em>Poznámka: Tento návod nebylo možné plně otestovat. Používejte na vlastní odpovědnost.</em></p>
+  </div>
 
   <script>
     const data = {
@@ -153,7 +126,7 @@
       const phone = phoneRaw.replace(/\D/g, '').replace(/(\d{3})(\d{3})(\d{3})/, '$1 $2 $3');
       const d = data[firma];
 
-      const html = <!doctype html><html lang="cs"><head><meta charset="UTF-8"></head><body style="margin:0;padding:0;"><table border="0" width="100%" cellpadding="0" cellspacing="0" style="background-color:#ffffff;"><tr><td align="left" style="padding-left:20px; padding-right:20px;"><table cellpadding="0" cellspacing="0" border="0" style="font-family: Arial, sans-serif; font-size: 14px; color: #000000; line-height: 20px; width: 600px; max-width: 100%;"><tbody><tr><td valign="top" style="padding: 20px 0;"><strong style="font-size: 18px; display: block;">${name}</strong><span style="display: block; font-size: 14px;">${position}</span><span style="display: block; font-size: 14px;">${d.company}</span></td><td width="30"></td><td width="1" bgcolor="#cccccc" style="line-height:0; font-size:0;">&nbsp;</td><td width="30"></td><td valign="top" style="padding: 20px 0;"><table width="100%" cellpadding="0" cellspacing="0" border="0"><tbody><tr valign="middle" style="line-height: 24px;"><td width="20"><img src="https://fintereality.cz/imgs/gradient/phone.png" width="13" style="display:block; border:0; vertical-align:middle;"></td><td style="padding-left:10px;"><a href="tel:${phone}" style="color:#000000; text-decoration:none;">${phone}</a></td></tr><tr valign="middle" style="line-height: 24px;"><td width="20"><img src="https://fintereality.cz/imgs/gradient/mail.png" width="13" style="display:block; border:0; vertical-align:middle;"></td><td style="padding-left:10px;"><a href="mailto:${email}" style="color:#000000; text-decoration:none;">${email}</a></td></tr><tr valign="middle" style="line-height: 24px;"><td width="20"><img src="https://fintereality.cz/imgs/gradient/web.png" width="13" style="display:block; border:0; vertical-align:middle;"></td><td style="padding-left:10px;"><a href="${d.web}" style="color:#000000; text-decoration:none;">${d.webLabel}</a></td></tr><tr valign="middle" style="line-height: 24px;"><td width="20"><img src="https://fintereality.cz/imgs/gradient/adress.png" width="13" height="15" style="display:block; border:0; vertical-align:middle;"></td><td style="padding-left:10px;">Pujmanové 1753/10a, 140 00 Praha 4-Nusle</td></tr></tbody></table></td></tr><tr><td colspan="5"><hr style="border:0; border-top:1px solid #cccccc; margin:20px 0;"></td></tr><tr><td colspan="2"><img src="${d.logo}" alt="Logo" width="130" style="display:block; border:0;"></td><td colspan="3" align="right"><a href="${d.social.fb}" style="margin-left:10px;"><img src="https://fintereality.cz/imgs/gradient/fb.png" width="24" style="display:inline-block; border:0;"></a><a href="${d.social.in}" style="margin-left:10px;"><img src="https://fintereality.cz/imgs/gradient/in.png" width="24" style="display:inline-block; border:0;"></a><a href="${d.social.ig}" style="margin-left:10px;"><img src="https://fintereality.cz/imgs/gradient/ig.png" width="24" style="display:inline-block; border:0;"></a></td></tr><tr><td colspan="5" style="font-size:10px; color:#808080; padding-top:20px;"><p style="margin:0;"><strong>Upozornění:</strong> Tato zpráva, včetně případných příloh, je důvěrná, určená výhradně adresátovi (-ům) a může obsahovat informace, které jsou vyhrazené jako osobní údeje nebo obchodní tajemství a jsou chráněné podle platného práva České republiky. Pokud ji obdržíte nedopatřením, prosím, okamžitě informujte odesílatele a vymažte tuto zprávu ze svého počítače. Nejste-li adresátem, není povoleno tuto zprávu jakkoliv užívat, rozšiřovat, kopírovat či zveřejňovat.</p><br><p style="margin:0;"><strong>Notice:</strong> This message, including any attachments, is confidential. It is intended solely for the addressee(s) and it may contain personal information or trade secrets, which are protected under the existing law of the Czech Republic. If you received this message accidentally, please notify the sender immediately and delete this message from your computer. If you are not the addressee, the use, distribution, copying and disclosure of this message is prohibited.</p></td></tr></tbody></table></td></tr></table></body></html>;
+      const html = `<!doctype html><html lang="cs"><head><meta charset="UTF-8"></head><body style="margin:0;padding:0;"><table border="0" width="100%" cellpadding="0" cellspacing="0" style="background-color:#ffffff;"><tr><td align="left" style="padding-left:20px; padding-right:20px;"><table cellpadding="0" cellspacing="0" border="0" style="font-family: Arial, sans-serif; font-size: 14px; color: #000000; line-height: 20px; width: 600px; max-width: 100%;"><tbody><tr><td valign="top" style="padding: 20px 0;"><strong style="font-size: 18px; display: block;">${name}</strong><span style="display: block; font-size: 14px;">${position}</span><span style="display: block; font-size: 14px;">${d.company}</span></td><td width="30"></td><td width="1" bgcolor="#cccccc" style="line-height:0; font-size:0;">&nbsp;</td><td width="30"></td><td valign="top" style="padding: 20px 0;"><table width="100%" cellpadding="0" cellspacing="0" border="0"><tbody><tr valign="middle" style="line-height: 24px;"><td width="20"><img src="https://fintereality.cz/imgs/gradient/phone.png" width="13" style="display:block; border:0; vertical-align:middle;"></td><td style="padding-left:10px;"><a href="tel:${phone}" style="color:#000000; text-decoration:none;">${phone}</a></td></tr><tr valign="middle" style="line-height: 24px;"><td width="20"><img src="https://fintereality.cz/imgs/gradient/mail.png" width="13" style="display:block; border:0; vertical-align:middle;"></td><td style="padding-left:10px;"><a href="mailto:${email}" style="color:#000000; text-decoration:none;">${email}</a></td></tr><tr valign="middle" style="line-height: 24px;"><td width="20"><img src="https://fintereality.cz/imgs/gradient/web.png" width="13" style="display:block; border:0; vertical-align:middle;"></td><td style="padding-left:10px;"><a href="${d.web}" style="color:#000000; text-decoration:none;">${d.webLabel}</a></td></tr><tr valign="middle" style="line-height: 24px;"><td width="20"><img src="https://fintereality.cz/imgs/gradient/adress.png" width="13" height="15" style="display:block; border:0; vertical-align:middle;"></td><td style="padding-left:10px;">Pujmanové 1753/10a, 140 00 Praha 4-Nusle</td></tr></tbody></table></td></tr><tr><td colspan="5"><hr style="border:0; border-top:1px solid #cccccc; margin:20px 0;"></td></tr><tr><td colspan="2"><img src="${d.logo}" alt="Logo" width="130" style="display:block; border:0;"></td><td colspan="3" align="right"><a href="${d.social.fb}" style="margin-left:10px;"><img src="https://fintereality.cz/imgs/gradient/fb.png" width="24" style="display:inline-block; border:0;"></a><a href="${d.social.in}" style="margin-left:10px;"><img src="https://fintereality.cz/imgs/gradient/in.png" width="24" style="display:inline-block; border:0;"></a><a href="${d.social.ig}" style="margin-left:10px;"><img src="https://fintereality.cz/imgs/gradient/ig.png" width="24" style="display:inline-block; border:0;"></a></td></tr><tr><td colspan="5" style="font-size:10px; color:#808080; padding-top:20px;"><p style="margin:0;"><strong>Upozornění:</strong> Tato zpráva, včetně případných příloh, je důvěrná, určená výhradně adresátovi (-ům) a může obsahovat informace, které jsou vyhrazené jako osobní údeje nebo obchodní tajemství a jsou chráněné podle platného práva České republiky. Pokud ji obdržíte nedopatřením, prosím, okamžitě informujte odesílatele a vymažte tuto zprávu ze svého počítače. Nejste-li adresátem, není povoleno tuto zprávu jakkoliv užívat, rozšiřovat, kopírovat či zveřejňovat.</p><br><p style="margin:0;"><strong>Notice:</strong> This message, including any attachments, is confidential. It is intended solely for the addressee(s) and it may contain personal information or trade secrets, which are protected under the existing law of the Czech Republic. If you received this message accidentally, please notify the sender immediately and delete this message from your computer. If you are not the addressee, the use, distribution, copying and disclosure of this message is prohibited.</p></td></tr></tbody></table></td></tr></table></body></html>`;
 
       document.getElementById('signaturePreview').innerHTML = html;
       document.getElementById('signatureCode').value = html;
@@ -168,5 +141,3 @@
   </script>
 </body>
 </html>
-
-
