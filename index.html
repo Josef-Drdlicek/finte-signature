@@ -79,25 +79,39 @@
   <textarea id="signatureCode" rows="15" readonly></textarea>
   <button class="btn" onclick="copyHtmlCode()">Zkopírovat HTML</button>
 
-  <p><strong>Jak vložit do Apple Mail (macOS):</strong></p>
+<p><strong>Jak vložit do Apple Mail (macOS):</strong></p>
   <ol>
     <li>Otevřete aplikaci Mail → Nastavení → Podpisy → vytvořte nový podpis (např. TEST).</li>
-    <li>V Finderu otevřete složku: <code>~/Library/Mail/V10/MailData/Signatures</code>.</li>
-    <li>Najděte podpis se jménem „TEST“, otevřete jej v textovém editoru a nahraďte obsahem výše.</li>
+    <li>V Finderu otevřete složku: <code>~/Library/Mail/V10/MailData/Signatures</code>.</li>
+    <li>Najděte podpis se jménem „TEST“, otevřete jej v textovém editoru a nahraďte obsahem výše.</li>
     <li>Uložte a zamkněte soubor přes <i>Získat informace → Zamknout</i>.</li>
     <li>Restartujte aplikaci Mail. Hotovo.</li>
   </ol>
   <p><em>Poznámka: Tento návod nebylo možné plně otestovat. Používejte na vlastní odpovědnost.</em></p>
 
   <br><br>
-  <p><strong>Jak vložit HTML podpis do Outlooku (Windows):</strong></p>
+  <p><strong>Jak vložit HTML podpis do Outlooku (webová verze):</strong></p>
   <ol>
-    <li>Otevřete Průzkumníka a vložte do adresního řádku: <code>%APPDATA%\Microsoft\Signatures</code>.</li>
-    <li>Vytvořte nový podpis přímo v Outlooku a zavřete Outlook.</li>
-    <li>Otevřete soubor s příponou <code>.htm</code> podle názvu vytvořeného podpisu.</li>
-    <li>Nahraďte celý obsah tím, co jste zkopírovali výše.</li>
-    <li>Uložte a spusťte Outlook znovu. Hotovo.</li>
+    <li>Otevřete <a href="https://outlook.live.com/" target="_blank">Outlook online</a> a přihlaste se.</li>
+    <li>Vpravo nahoře klikněte na ikonu ⚙️ <strong>Nastavení</strong>.</li>
+    <li>Dole zvolte <strong>Zobrazit všechna nastavení Outlooku</strong>.</li>
+    <li>V levém menu vyberte <strong>Pošta → Vytváření a odpovídání</strong>.</li>
+    <li>V části <strong>Podpis e-mailu</strong> klikněte na <strong>Nový podpis</strong>.</li>
+    <li>Vložte HTML podpis do textového pole.</li>
+    <li>Vyberte, kdy se má podpis používat.</li>
+    <li>Uložte změny.</li>
   </ol>
+  <p><a href="https://clean.email/blog/email-signature/outlook-html-signature" target="_blank">Zdrojový článek (clean.email)</a></p>
+
+  <br><br>
+  <p><strong>Jak vložit HTML podpis do Outlooku (Windows aplikace):</strong></p>
+<ol>
+  <li>Otevřete Outlook a přejděte do <strong>Soubor → Možnosti → Pošta → Podpisy…</strong></li>
+  <li>Vytvořte nový podpis a zadejte libovolný název (např. Finte).</li>
+  <li>Do velkého textového pole vložte HTML kód (např. pomocí Ctrl+V, pokud jste ho předtím zkopírovali tlačítkem výše).</li>
+  <li>Pokud se HTML nenaformátuje správně, otevřete podpis v aplikaci <strong>Word</strong> nebo <strong>webový prohlížeč</strong> a zkopírujte jej vizuálně odtud.</li>
+  <li>Vyberte, kdy se má podpis přidávat (nové zprávy, odpovědi) a klikněte na <strong>OK</strong>.</li>
+</ol>
   <p><a href="https://clean.email/blog/email-signature/outlook-html-signature" target="_blank">Zdrojový článek (clean.email)</a></p>
 </div>
 
