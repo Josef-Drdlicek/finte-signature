@@ -300,29 +300,6 @@
       document.getElementById('signatureCodeMobile').value = fallbackHtml;
     }
 
-
-
-
-    const fallbackHtml = generateFallbackHtml(name, position, email, phone, d);
-
-    document.getElementById('signaturePreview').innerHTML = `
-  <div style="border:1px solid #ccc; padding:20px; margin-bottom:30px; background-color:#fff;">
-    <h3 style="margin-top:0; font-size:18px;">Desktop verze</h3>
-    <div>${html}</div>
-  </div>
-  <div style="border:1px solid #ccc; padding:20px; background-color:#fff;">
-    <h3 style="margin-top:0; font-size:18px;">iPhone fallback verze</h3>
-    <div>${fallbackHtml}</div>
-  </div>
-`;
-
-
-    document.getElementById('signatureCode').value = html;
-    document.getElementById('signatureCodeMobile').value = fallbackHtml;
-
-
-    }
-
     function copyHtmlCode() {
       const textarea = document.getElementById('signatureCode');
       textarea.select();
