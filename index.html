@@ -166,12 +166,20 @@
 
     function renderSignature() {
       const firma = document.getElementById('firma').value;
-      const name = document.getElementById('name').value;
-      const position = document.getElementById('position').value;
-      const email = document.getElementById('email').value;
+      const name = document.getElementById('name').value.trim();
+      const position = document.getElementById('position').value.trim();
+      const email = document.getElementById('email').value.trim();
       const phoneRaw = document.getElementById('phone').value;
       const phone = phoneRaw.replace(/\D/g, '').replace(/(\d{3})(\d{3})(\d{3})/, '$1 $2 $3');
       const d = data[firma];
+
+      // Nezobrazuj nic, dokud není vyplněno jméno a e-mail
+      if (!name || !email) {
+        document.getElementById('signaturePreview').innerHTML = '';
+        document.getElementById('signatureCode').value = '';
+        document.getElementById('signatureCodeMobile').value = '';
+        return;
+      }
 
       const html = `<!doctype html>
 <html lang="cs">
@@ -275,11 +283,29 @@
   </table>
 </body>
 </html>`;
+      const fallbackHtml = generateFallbackHtml(name, position, email, phone, d);
+
+      document.getElementById('signaturePreview').innerHTML = `
+    <div style="border:1px solid #ccc; padding:20px; margin-bottom:30px; background-color:#fff;">
+      <h3 style="margin-top:0; font-size:18px;">Desktop verze</h3>
+      <div>${html}</div>
+    </div>
+    <div style="border:1px solid #ccc; padding:20px; background-color:#fff;">
+      <h3 style="margin-top:0; font-size:18px;">iPhone fallback verze</h3>
+      <div>${fallbackHtml}</div>
+    </div>
+  `;
+
+      document.getElementById('signatureCode').value = html;
+      document.getElementById('signatureCodeMobile').value = fallbackHtml;
+    }
 
 
-const fallbackHtml = generateFallbackHtml(name, position, email, phone, d);
 
-document.getElementById('signaturePreview').innerHTML = `
+
+    const fallbackHtml = generateFallbackHtml(name, position, email, phone, d);
+
+    document.getElementById('signaturePreview').innerHTML = `
   <div style="border:1px solid #ccc; padding:20px; margin-bottom:30px; background-color:#fff;">
     <h3 style="margin-top:0; font-size:18px;">Desktop verze</h3>
     <div>${html}</div>
@@ -291,8 +317,8 @@ document.getElementById('signaturePreview').innerHTML = `
 `;
 
 
-      document.getElementById('signatureCode').value = html;
-      document.getElementById('signatureCodeMobile').value = fallbackHtml;
+    document.getElementById('signatureCode').value = html;
+    document.getElementById('signatureCodeMobile').value = fallbackHtml;
 
 
     }
@@ -326,7 +352,7 @@ document.getElementById('signaturePreview').innerHTML = `
       <td style="padding:20px;">
         <!-- Jméno a firma -->
         <div style="font-size:16px; font-weight:bold; margin-bottom:4px;">${name}</div>
-        <div style="margin-bottom:16px;">${d.company}</div>
+        <div style="margin-bottom:16px;">${position}<br>${d.company}</div>
 
         <!-- Kontakty -->
         <div style="margin-bottom:6px;">
@@ -342,22 +368,20 @@ document.getElementById('signaturePreview').innerHTML = `
           <strong>Adresa:</strong> Pujmanové 1753/10a, 140&nbsp;00&nbsp;Praha&nbsp;4&nbsp;–&nbsp;Nusle
         </div>
 
-        <!-- Logo -->
-        <div style="margin-bottom:16px;">
-          <img src="${d.logo}" alt="Finte logo" width="120" style="display:block;">
-        </div>
-
-        <!-- Sociální ikony -->
-        <div style="margin-bottom:20px;">
-          <a href="${d.social.fb}">
-            <img src="https://fintereality.cz/imgs/gradient/fb.png" width="24" style="margin-right:10px;">
-          </a>
-          <a href="${d.social.in}">
-            <img src="https://fintereality.cz/imgs/gradient/in.png" width="24" style="margin-right:10px;">
-          </a>
-          <a href="${d.social.ig}">
-            <img src="https://fintereality.cz/imgs/gradient/ig.png" width="24">
-          </a>
+        <!-- Logo + sociální ikony vedle sebe -->
+        <div style="display:flex; align-items:center; margin-bottom:20px; gap:20px;">
+          <img src="${d.logo}" alt="Finte logo" width="130" style="display:block;">
+          <div>
+            <a href="${d.social.fb}" style="display:inline-block; margin-right:10px;">
+              <img src="https://fintereality.cz/imgs/gradient/fb.png" width="32" style="border:0;">
+            </a>
+            <a href="${d.social.in}" style="display:inline-block; margin-right:10px;">
+              <img src="https://fintereality.cz/imgs/gradient/in.png" width="32" style="border:0;">
+            </a>
+            <a href="${d.social.ig}" style="display:inline-block;">
+              <img src="https://fintereality.cz/imgs/gradient/ig.png" width="32" style="border:0;">
+            </a>
+          </div>
         </div>
 
         <!-- Upozornění -->
@@ -376,6 +400,7 @@ document.getElementById('signaturePreview').innerHTML = `
 </body>
 </html>`;
     }
+
 
 
 
