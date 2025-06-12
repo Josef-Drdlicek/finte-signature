@@ -79,8 +79,6 @@
   <textarea id="signatureCode" rows="15" readonly></textarea>
   <button class="btn" onclick="copyHtmlCode()">Zkopírovat HTML</button>
 
-  <a id="downloadLink" class="btn" style="margin-left: 10px;" download="finte-podpis.html">Stáhnout HTML</a>
-
 <p><strong>Jak vložit do Apple Mail (macOS):</strong></p>
   <ol>
     <li>Otevřete aplikaci Mail → Nastavení → Podpisy → vytvořte nový podpis (např. TEST).</li>
@@ -90,20 +88,6 @@
     <li>Restartujte aplikaci Mail. Hotovo.</li>
   </ol>
   <p><em>Poznámka: Tento návod nebylo možné plně otestovat. Používejte na vlastní odpovědnost.</em></p>
-
-  <br><br>
-  <p><strong>Jak vložit HTML podpis do iPhonu:</strong></p>
-<ol>
-  <li>Stáhněte HTML podpis přes tlačítko výše nebo si jej zkopírujte.</li>
-  <li>Pošlete si jej e-mailem (např. sami sobě).</li>
-  <li>Na iPhonu otevřete e-mail v aplikaci Mail.</li>
-  <li>Podržte prst na podpisu → zvolte <strong>Kopírovat</strong>.</li>
-  <li>Otevřete <strong>Nastavení → Mail → Podpis</strong>.</li>
-  <li>Vložte nový podpis (dlouhý dotek → Vložit).</li>
-  <li>Hotovo – otestujte odesláním testovacího e-mailu.</li>
-</ol>
-<p><a href="https://www.youtube.com/watch?v=MC1cCQF5gIs" target="_blank">Videonávod (YouTube)</a></p>
-
 
   <br><br>
   <p><strong>Jak vložit HTML podpis do Outlooku (webová verze):</strong></p>
@@ -173,10 +157,6 @@
 
       document.getElementById('signaturePreview').innerHTML = html;
       document.getElementById('signatureCode').value = html;
-
-      const blob = new Blob([html], { type: 'text/html' });
-      const url = URL.createObjectURL(blob);
-      document.getElementById('downloadLink').href = url;
     }
 
     function copyHtmlCode() {
@@ -188,3 +168,5 @@
   </script>
 </body>
 </html>
+
+
