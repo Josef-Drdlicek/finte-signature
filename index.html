@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="cs">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -10,14 +11,19 @@
       padding: 20px;
       background-color: #f9f9f9;
     }
+
     .form-group {
       margin-bottom: 10px;
     }
+
     label {
       display: block;
       font-weight: bold;
     }
-    input, select, textarea {
+
+    input,
+    select,
+    textarea {
       width: 100%;
       padding: 8px;
       margin-top: 4px;
@@ -25,12 +31,14 @@
       border: 1px solid #ccc;
       border-radius: 4px;
     }
+
     #signaturePreview {
       margin-top: 20px;
       padding: 20px;
       border: 1px solid #ccc;
       background-color: #fff;
     }
+
     .btn {
       padding: 10px 20px;
       background-color: #333;
@@ -39,11 +47,13 @@
       border-radius: 4px;
       cursor: pointer;
     }
+
     .btn:hover {
       background-color: #555;
     }
   </style>
 </head>
+
 <body>
   <h1>Generátor e-mailového podpisu</h1>
 
@@ -78,6 +88,9 @@
     <label for="signatureCode">Kód podpisu pro Apple Mail:</label>
     <textarea id="signatureCode" rows="15" readonly></textarea>
     <button class="btn" onclick="copyHtmlCode()">Zkopírovat HTML</button>
+    <button class="btn" onclick="downloadHtml()">Stáhnout HTML</button>
+
+
     <p><strong>Jak vložit do Apple Mail (macOS):</strong></p>
     <ol>
       <li>Otevřete aplikaci Mail → Nastavení → Podpisy → vytvořte nový podpis (např. TEST).</li>
@@ -87,35 +100,64 @@
       <li>Restartujte aplikaci Mail. Hotovo.</li>
     </ol>
     <p><em>Poznámka: Tento návod nebylo možné plně otestovat. Používejte na vlastní odpovědnost.</em></p>
+
+    <p><strong>Jak vložit HTML podpis do iPhonu:</strong></p>
+    <ol>
+      <li>Stáhněte HTML podpis přes tlačítko výše.</li>
+      <li>Pošlete si jej e-mailem (např. sami sobě).</li>
+      <li>Na iPhonu otevřete e-mail v aplikaci Mail.</li>
+      <li>Podržte prst na podpisu → zvolte <strong>Kopírovat</strong>.</li>
+      <li>Otevřete <strong>Nastavení → Mail → Podpis</strong>.</li>
+      <li>Vložte nový podpis (dlouhý dotek → Vložit).</li>
+      <li>Hotovo – otestujte odesláním testovacího e-mailu.</li>
+    </ol>
+    <p><a href="https://www.youtube.com/watch?v=MC1cCQF5gIs" target="_blank">Videonávod (YouTube)</a></p>
+
+
+    <br><br>
+    <p><strong>Jak vložit HTML podpis do Outlooku (Windows aplikace):</strong></p>
+    <ol>
+      <li>Otevřete Outlook a přejděte do <strong>Soubor → Možnosti → Pošta → Podpisy…</strong></li>
+      <li>Vytvořte nový podpis a zadejte libovolný název (např. Finte).</li>
+      <li>Do velkého textového pole vložte HTML kód (např. pomocí Ctrl+V, pokud jste ho předtím zkopírovali tlačítkem
+        výše).</li>
+      <li>Pokud se HTML nenaformátuje správně, otevřete podpis v aplikaci <strong>Word</strong> nebo <strong>webový
+          prohlížeč</strong> a zkopírujte jej vizuálně odtud.</li>
+      <li>Vyberte, kdy se má podpis přidávat (nové zprávy, odpovědi) a klikněte na <strong>OK</strong>.</li>
+    </ol>
+
+    <p><a href="https://clean.email/blog/email-signature/outlook-html-signature" target="_blank">Zdrojový článek
+        (clean.email)</a></p>
   </div>
+
 
   <script>
     const data = {
-  'finte': {
-    company: 'Finte s.r.o.',
-    emailDomain: 'finte.cz',
-    web: 'https://www.finte.cz',
-    webLabel: 'www.finte.cz',
-    logo: 'https://www.fintereality.cz/imgs/podpis_finte/finte-black-svg.png',
-    social: {
-      fb: 'https://www.facebook.com/fintecz',
-      in: 'https://cz.linkedin.com/company/finte-cz',
-      ig: 'https://www.instagram.com/finte.cz/'
-    }
-  },
-  'finte-reality': {
-    company: 'Finte Reality s.r.o.',
-    emailDomain: 'fintereality.cz',
-    web: 'https://www.fintereality.cz',
-    webLabel: 'www.fintereality.cz',
-    logo: 'https://www.fintereality.cz/wp-content/uploads/2023/05/finte-logo-dark800.png',
-    social: {
-      fb: 'https://www.facebook.com/profile.php?id=61575099860254',
-      in: 'https://www.linkedin.com/company/finte-reality/about/',
-      ig: 'https://www.instagram.com/fintereality/'
-    }
-  }
-};
+      'finte': {
+        company: 'Finte s.r.o.',
+        emailDomain: 'finte.cz',
+        web: 'https://www.finte.cz',
+        webLabel: 'www.finte.cz',
+        logo: 'https://www.fintereality.cz/imgs/podpis_finte/finte-black-svg.png',
+        social: {
+          fb: 'https://www.facebook.com/fintecz',
+          in: 'https://cz.linkedin.com/company/finte-cz',
+          ig: 'https://www.instagram.com/finte.cz/'
+        }
+      },
+      'finte-reality': {
+        company: 'Finte Reality s.r.o.',
+        emailDomain: 'fintereality.cz',
+        web: 'https://www.fintereality.cz',
+        webLabel: 'www.fintereality.cz',
+        logo: 'https://www.fintereality.cz/wp-content/uploads/2023/05/finte-logo-dark800.png',
+        social: {
+          fb: 'https://www.facebook.com/profile.php?id=61575099860254',
+          in: 'https://www.linkedin.com/company/finte-reality/about/',
+          ig: 'https://www.instagram.com/fintereality/'
+        }
+      }
+    };
 
     function renderSignature() {
       const firma = document.getElementById('firma').value;
@@ -138,6 +180,19 @@
       document.execCommand('copy');
       alert('HTML podpis zkopírován!');
     }
+
+    function downloadHtml() {
+      const htmlContent = document.getElementById('signatureCode').value;
+      const blob = new Blob([htmlContent], { type: 'text/html' });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = `podpis-${name || 'uzivatel'}.html`;
+      a.click();
+      URL.revokeObjectURL(url);
+    }
+
   </script>
 </body>
+
 </html>
